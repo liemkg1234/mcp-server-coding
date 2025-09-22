@@ -14,7 +14,7 @@ services:
     command:
       - --port=8000
 #      - --catalog=/mcp/catalog.yaml
-      - --servers=context7
+      - --servers=context7,memory
       - --transport=sse
     networks:
       - mcp-server-coding-net

@@ -17,16 +17,16 @@ environment: export-env-docker
 
 stop: export-env-docker
     docker compose --env-file .env.docker --env-file .env \
-      -p {{PROJECT_NAME}}-{{ENV}} \
-      -f docker-compose.yml \
-      down
+        -p {{PROJECT_NAME}}-{{ENV}} \
+        -f docker-compose.yml \
+        down
 
 start: stop
     @echo "Starting PROJECT '{{PROJECT_NAME}}' with ENVIRONMENT: {{ENV}}"
     docker compose --env-file .env.docker --env-file .env \
-      -p {{PROJECT_NAME}}-{{ENV}} \
-      -f docker-compose.yml \
-      up -d
+        -p {{PROJECT_NAME}}-{{ENV}} \
+        -f docker-compose.yml \
+        up -d
 
 ## Helper
 help:
