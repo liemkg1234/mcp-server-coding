@@ -1,0 +1,26 @@
+version: "3.11"
+
+services:
+  # MCP Gateway
+  mcp-gateway:
+    image: docker/mcp-gateway:latest
+    use_api_socket: true
+    env_file:
+      - .env
+#    volumes:
+#      - ./config/catalog.yaml:/mcp/catalog.yaml
+    ports:
+      - "${MCP_SERVER_PORT}:8000"
+    command:
+      - --port=8000
+#      - --catalog=/mcp/catalog.yaml
+      - --servers=context7
+      - --transport=sse
+    networks:
+      - mcp-server-coding-net
+
+# === Network ===
+networks:
+  mcp-server-coding-net:
+    name: ${DOCKER_NETWORK_NAME}
+    driver: bridge
