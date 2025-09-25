@@ -7,8 +7,11 @@ services:
     use_api_socket: true
     env_file:
       - .env
-#    volumes:
+    volumes:
 #      - ./config/catalog.yaml:/mcp/catalog.yaml
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/misc:/misc
+
     ports:
       - "${MCP_SERVER_PORT}:8000"
     command:
@@ -16,6 +19,7 @@ services:
 #      - --catalog=/mcp/catalog.yaml
       - --servers=context7,memory
       - --transport=sse
+    restart: always
     networks:
       - mcp-server-coding-net
 
